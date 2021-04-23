@@ -1,0 +1,12 @@
+{
+    "exclude": ["node_modules", "dist"],
+    "compilerOptions": {
+        "target": "es5",
+        "strict": true,
+        "lib": ["ES2015"],
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "baseUrl": ".",
+        "outDir": "dist"
+    }
+}
