@@ -29,7 +29,7 @@ module.exports = {
             patterns: [
                 { from: 'manifest.json', to: 'manifest.json' },
                 { from: 'static/devtools.html', to: 'devtools.html' },
-                { from: 'static/test.html', to: 'test.html' }
+                { from: 'static/popup.html', to: 'popup.html' }
             ]
         })
     ]

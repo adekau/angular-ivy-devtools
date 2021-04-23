@@ -7,6 +7,9 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "baseUrl": ".",
-        "outDir": "dist"
+        "outDir": "dist",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": true
     }
 }

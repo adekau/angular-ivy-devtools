@@ -1,1 +1,1 @@
-chrome.devtools.panels.create('Ivy DevTools', '', 'test.html');
+chrome.devtools.panels.create('Ivy DevTools', '', 'index.html');

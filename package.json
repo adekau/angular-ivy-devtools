@@ -4,7 +4,13 @@
   "description": "Developer Tools for Angular Ivy",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack"
+    "build": "yarn run build:devtools && yarn run build:extension",
+    "build:watch": "concurrently --kill-others \"yarn run build:devtools:watch\" \"yarn run build:extension:watch\"",
+    "build:extension": "webpack",
+    "build:devtools": "yarn workspace devtools build -- --delete-output-path false",
+    "build:extension:watch": "yarn run build:extension -- --watch",
+    "build:devtools:watch": "yarn run build:devtools -- --watch",
+    "clean": "shx rm -rf ./dist"
   },
   "author": "adekau",
   "license": "ISC",
@@ -14,7 +20,9 @@
   ],
   "devDependencies": {
     "@types/chrome": "^0.0.135",
+    "concurrently": "^6.0.2",
     "copy-webpack-plugin": "^8.1.1",
+    "shx": "^0.3.3",
     "ts-loader": "^9.1.0",
     "typescript": "^4.2.4",
     "webpack": "^5.35.0",
