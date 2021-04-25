@@ -1,6 +1,5 @@
 import { Ivy11Adapter } from "@ivy";
-import { handleRequest, MessageAction, MessageType } from "@messaging";
-import { MessageSource } from "packages/messaging/src/enums/message-source.enum";
+import { handleRequest, MessageSource, MessageType } from "@messaging";
 
 window.addEventListener('message', function ({ data, origin }: MessageEvent) {
     if (data.type !== MessageType.Request) {

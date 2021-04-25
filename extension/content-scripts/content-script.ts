@@ -1,6 +1,5 @@
 // import { sendScriptMessage } from "@messaging";
-import { sendScriptMessage } from "@messaging";
-import { MessageSource } from "packages/messaging/src/enums/message-source.enum";
+import { MessageSource, sendScriptMessage } from "@messaging";
 import { injectScript } from "./injection";
 
 injectScript('ng-devtools.js', () => { });

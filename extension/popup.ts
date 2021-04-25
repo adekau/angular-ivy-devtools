@@ -1,6 +1,4 @@
-import { MessageAction, MessageResponse, MessageType } from "@messaging";
-import { MessageSource } from "packages/messaging/src/enums/message-source.enum";
-import { sendRequest } from "packages/messaging/src/send-request";
+import { MessageAction, MessageResponse, MessageSource, MessageType, sendRequest } from "@messaging";
 import { v4 } from 'uuid';
 
 function DOMContentLoaded() {
