@@ -1,0 +1,11 @@
+{
+  "name": "ivy",
+  "version": "0.0.1",
+  "description": "Library for Angular Ivy related operations",
+  "main": "index.js",
+  "author": "adekau",
+  "license": "MIT",
+  "devDependencies": {
+    "@angular/core": "^11.2.11"
+  }
+}

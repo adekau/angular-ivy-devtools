@@ -1,9 +1,17 @@
-// console.log('ready');
-// window.addEventListener('message', function ({ data }: any) {
-//     if (data.type === 'request' && data.action === 'angularInfo') {
-//         handleAngularInfo();
-//     }
-// });
+import { Ivy11Adapter } from "@ivy";
+import { handleRequest, MessageAction, MessageType } from "@messaging";
+
+window.addEventListener('message', function ({ data, origin }: MessageEvent) {
+    if (data.type !== MessageType.Request) {
+        return;
+    }
+    handleRequest(data, { origin }, (response) => postMessage(response, '*'));
+});
+
+const ivyAdapter = new Ivy11Adapter();
+console.dir(ivyAdapter.angularRoot);
+console.log(ivyAdapter.consts);
+console.log(ivyAdapter.getIvyContext(ivyAdapter.angularRoot));
 
 // function handleAngularInfo() {
 //     const { childNodes } = document.body;

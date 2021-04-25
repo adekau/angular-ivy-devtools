@@ -9,6 +9,7 @@ export const messageHandlers: MessageHandlers = {
         const version = root?.getAttribute('ng-version');
         if (!version) {
             sendResponse({
+                id: request.id,
                 type: MessageType.Response,
                 action: MessageAction.AngularInfo,
                 result: {
@@ -17,6 +18,7 @@ export const messageHandlers: MessageHandlers = {
             });
         } else {
             sendResponse({
+                id: request.id,
                 type: MessageType.Response,
                 action: MessageAction.AngularInfo,
                 result: {

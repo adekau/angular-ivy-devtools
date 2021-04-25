@@ -13,6 +13,7 @@ function DOMContentLoaded() {
 }
 
 function handleAngularInfoResponse(message: any) {
+    console.log(message);
     const span = document.getElementById('angular');
     if (!span) {
         return;
