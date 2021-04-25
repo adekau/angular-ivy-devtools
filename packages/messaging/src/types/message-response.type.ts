@@ -13,7 +13,8 @@ export type MessageResponse = MessageResponseBase & (
             | {
                 isAngular: true;
                 version: string;
-            } | {
+            }
+            | {
                 isAngular: false;
             }
         )
