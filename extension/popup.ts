@@ -1,21 +1,18 @@
 import { MessageAction, MessageType } from "@messaging";
 
 function DOMContentLoaded() {
-    console.log('init');
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
         if (tab?.id) {
             chrome.tabs.sendMessage(
                 tab.id,
-                { type: 'request', action: 'angularInfo' },
-                (res) => {
-                    console.log(res);
-                    handleAngularInfoResult(res);
-                });
+                { type: MessageType.Request, action: MessageAction.AngularInfo },
+                handleAngularInfoResponse
+            );
         }
     });
 }
 
-function handleAngularInfoResult(message: any) {
+function handleAngularInfoResponse(message: any) {
     const span = document.getElementById('angular');
     if (!span) {
         return;
