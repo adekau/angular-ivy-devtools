@@ -1,8 +1,11 @@
 import { MessageAction } from "../enums/message-action.enum";
+import { MessageSource } from "../enums/message-source.enum";
 import { MessageType } from "../enums/message-type.enum";
 
 type MessageResponseBase = {
     id: string;
+    source: MessageSource,
+    originalSource: MessageSource;
     type: MessageType.Response;
     action: MessageAction;
 };

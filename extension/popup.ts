@@ -1,18 +1,23 @@
-import { MessageAction, MessageType } from "@messaging";
+import { MessageAction, MessageResponse, MessageType } from "@messaging";
+import { MessageSource } from "packages/messaging/src/enums/message-source.enum";
+import { sendRequest } from "packages/messaging/src/send-request";
+import { v4 } from 'uuid';
 
 function DOMContentLoaded() {
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
         if (tab?.id) {
-            chrome.tabs.sendMessage(
-                tab.id,
-                { type: MessageType.Request, action: MessageAction.AngularInfo },
-                handleAngularInfoResponse
-            );
+            sendRequest(tab.id, {
+                type: MessageType.Request,
+                action: MessageAction.AngularInfo,
+                source: MessageSource.Popup,
+                originalSource: MessageSource.Popup,
+                id: v4()
+            }, handleAngularInfoResponse);
         }
     });
-}
+};
 
-function handleAngularInfoResponse(message: any) {
+function handleAngularInfoResponse(message: MessageResponse & { action: MessageAction.AngularInfo }) {
     console.log(message);
     const span = document.getElementById('angular');
     if (!span) {

@@ -1,11 +1,12 @@
 import { Ivy11Adapter } from "@ivy";
 import { handleRequest, MessageAction, MessageType } from "@messaging";
+import { MessageSource } from "packages/messaging/src/enums/message-source.enum";
 
 window.addEventListener('message', function ({ data, origin }: MessageEvent) {
     if (data.type !== MessageType.Request) {
         return;
     }
-    handleRequest(data, { origin }, (response) => postMessage(response, '*'));
+    handleRequest(data, { origin }, (response) => postMessage({ ...response, source: MessageSource.InjectedScript }, '*'));
 });
 
 const ivyAdapter = new Ivy11Adapter();

@@ -10,6 +10,8 @@ export const messageHandlers: MessageHandlers = {
         if (!version) {
             sendResponse({
                 id: request.id,
+                source: request.source,
+                originalSource: request.originalSource,
                 type: MessageType.Response,
                 action: MessageAction.AngularInfo,
                 result: {
@@ -19,6 +21,8 @@ export const messageHandlers: MessageHandlers = {
         } else {
             sendResponse({
                 id: request.id,
+                source: request.source,
+                originalSource: request.originalSource,
                 type: MessageType.Response,
                 action: MessageAction.AngularInfo,
                 result: {
