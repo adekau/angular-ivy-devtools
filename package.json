@@ -10,6 +10,7 @@
     "build:devtools": "yarn workspace devtools build --delete-output-path false",
     "build:extension:watch": "yarn build:extension --watch",
     "build:devtools:watch": "yarn build:devtools --watch",
+    "start": "yarn workspace devtools start",
     "clean": "shx rm -rf ./dist"
   },
   "author": "adekau",

@@ -5,7 +5,11 @@ module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
     entry: {
-        devtools: './extension/devtools'
+        devtools: './extension/devtools',
+        'content-script': './extension/content-scripts/content-script',
+        'background-script': './extension/background-scripts/background-script',
+        'ng-devtools': './extension/ng-devtools',
+        popup: './extension/popup'
     },
     cache: true,
     module: {

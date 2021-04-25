@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+declare const chrome: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DevTools';
+  constructor() {
+    const connection = chrome?.runtime?.connect();
+  }
 }
