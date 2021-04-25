@@ -1,3 +1,5 @@
+import { MessageAction, MessageType } from "@messaging";
+
 function DOMContentLoaded() {
     console.log('init');
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
@@ -11,19 +13,15 @@ function DOMContentLoaded() {
                 });
         }
     });
-
-    chrome.runtime.onMessage.addListener((message) => {
-    });
 }
 
 function handleAngularInfoResult(message: any) {
     const span = document.getElementById('angular');
-    console.log(span);
     if (!span) {
         return;
     }
     span.classList.forEach(cl => span.classList.remove(cl));
-    if (message.type === 'result' && message.action === 'angularInfo' && message.result.isAngular) {
+    if (message.type === MessageType.Response && message.action === MessageAction.AngularInfo && message.result.isAngular) {
         span.innerText = `Angular detected (version ${message.result.version}).`;
         span.classList.add('angular');
     } else {

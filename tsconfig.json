@@ -10,6 +10,10 @@
         "outDir": "dist",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "declaration": true
+        "declaration": true,
+        "paths": {
+            "@ivy": ["./packages/ivy/index.ts"],
+            "@messaging": ["./packages/messaging/index.ts"]
+        }
     }
 }
