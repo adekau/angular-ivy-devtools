@@ -1,4 +1,4 @@
-import { Ivy11Adapter, Ivy11Consts } from "@ivy";
+import { Ivy11Adapter } from "@ivy";
 import { handleRequest, MessageSource, MessageType } from "@messaging";
 
 window.addEventListener('message', function ({ data, origin }: MessageEvent) {
@@ -13,6 +13,10 @@ console.dir(ivyAdapter.angularRoot);
 console.log(ivyAdapter.consts);
 console.log(ivyAdapter.getNgContext(ivyAdapter.angularRoot));
 console.log(ivyAdapter.getRootComponents());
+
+const el = document.getElementsByTagName('app-test').item(0) as HTMLElement ?? undefined;
+console.log(ivyAdapter.getNgContext(el));
+console.log(ivyAdapter.getComponentContext(el));
 
 // function handleAngularInfo() {
 //     const { childNodes } = document.body;

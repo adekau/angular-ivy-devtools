@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 
 declare const chrome: any;
+@Component({
+  selector: 'app-test',
+  template: '<div>a test component</div>'
+})
+export class TestComponent {}
 
 @Component({
   selector: 'app-root',
