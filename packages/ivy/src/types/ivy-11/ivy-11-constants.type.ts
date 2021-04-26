@@ -1,0 +1,26 @@
+export type Ivy11Constants = {
+    version: 11,
+    contextKey: '__ngContext__';
+    lView: {
+        host: 0;
+        tView: 1;
+        flags: 2;
+        parent: 3;
+        next: 4;
+        transplantedViewsToRefresh: 5;
+        tHost: 6;
+        cleanup: 7;
+        context: 8;
+        injector: 9;
+        rendererFactory: 10;
+        renderer: 11;
+        sanitizer: 12;
+        childHead: 13;
+        childTail: 14;
+        declarationView: 15;
+        declarationComponentView: 16;
+        declarationLContainer: 17;
+        preorderHookFlags: 18;
+        queries: 19;
+    };
+};
