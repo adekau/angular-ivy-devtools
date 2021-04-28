@@ -1,11 +1,13 @@
 import { Ivy11Consts } from "../constants/ivy-11.const";
 import { findAngularRoot } from "../find-angular-root";
-import { Ivy11Constants, Ivy11LView, Ivy11RootContext } from "../types";
+import { Ivy11LView, Ivy11TView } from "../types";
 import { IvyAdapter } from "../types/ivy-adapter";
 import { IvyConstants } from "../types/ivy-constants";
 import { isIvyRootContext } from "../util";
 
 export class Ivy11Adapter extends IvyAdapter {
+    public version = 11;
+
     public get consts(): IvyConstants {
         return Ivy11Consts;
     }
@@ -14,7 +16,7 @@ export class Ivy11Adapter extends IvyAdapter {
         return findAngularRoot();
     }
 
-    public getNgContext(from: HTMLElement | undefined): Ivy11LView | undefined {
+    public getNgContext(from: Element | undefined): Ivy11LView | undefined {
         if (!from) {
             return;
         }
@@ -22,7 +24,7 @@ export class Ivy11Adapter extends IvyAdapter {
         return lView;
     }
 
-    public getComponentContext(from: HTMLElement | undefined): Ivy11LView[typeof Ivy11Consts.lView.context] | undefined {
+    public getComponentContext(from: Element | undefined): Ivy11LView[typeof Ivy11Consts.lView.context] | undefined {
         if (!from) {
             return;
         }
@@ -35,5 +37,16 @@ export class Ivy11Adapter extends IvyAdapter {
         if (isIvyRootContext(ctx)) {
             return ctx?.components;
         }
+    }
+
+    public getTView(from: Element | undefined): Ivy11TView | undefined {
+        const ctx = this.getNgContext(from);
+        return ctx?.[this.consts.lView.tView];
+    }
+
+    public getTemplate() {
+        const tView = this.getTView(this.angularRoot);
+        const tpl = tView?.template;
+        return tpl;
     }
 }

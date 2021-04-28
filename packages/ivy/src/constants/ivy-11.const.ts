@@ -24,5 +24,13 @@ export const Ivy11Consts: Ivy11Constants = {
         declarationLContainer: 17,
         preorderHookFlags: 18,
         queries: 19
+    },
+    lContainer: {
+        type: 1,
+        hasTransplantedViews: 2,
+        native: 7,
+        viewRefs: 8,
+        movedViews: 9,
+        containerHeaderOffset: 10
     }
 };

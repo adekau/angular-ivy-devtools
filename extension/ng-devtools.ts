@@ -1,4 +1,4 @@
-import { Ivy11Adapter } from "@ivy";
+import { Ivy11Adapter, Ivy11LView, Ivy11TView } from "@ivy";
 import { handleRequest, MessageSource, MessageType } from "@messaging";
 
 window.addEventListener('message', function ({ data, origin }: MessageEvent) {
@@ -11,22 +11,27 @@ window.addEventListener('message', function ({ data, origin }: MessageEvent) {
 const ivyAdapter = new Ivy11Adapter();
 console.dir(ivyAdapter.angularRoot);
 console.log(ivyAdapter.consts);
-console.log(ivyAdapter.getNgContext(ivyAdapter.angularRoot));
+const rootLView = ivyAdapter.getNgContext(ivyAdapter.angularRoot);
+console.log(rootLView);
 console.log(ivyAdapter.getRootComponents());
+const rootTView = ivyAdapter.getTView(ivyAdapter.angularRoot);
+
+console.log('-------------------------------');
+function getComponents({ tv, lv }: { tv?: Ivy11TView, lv?: Ivy11LView }): any {
+    const components = tv?.components;
+    if (!components?.length) {
+        return [];
+    }
+    const m = components.map(cidx => lv?.[cidx]).filter(x => x != null);
+    let ret;
+    m.forEach((cmp: Ivy11LView) => ret = m.concat(getComponents({ lv: cmp, tv: cmp[ivyAdapter.consts.lView.tView]})));
+    return ret;
+}
+console.log(getComponents({ lv: rootLView, tv: rootTView }));
+console.log('-------------------------------');
+
+console.log(ivyAdapter.getTemplate());
 
 const el = document.getElementsByTagName('app-test').item(0) as HTMLElement ?? undefined;
 console.log(ivyAdapter.getNgContext(el));
 console.log(ivyAdapter.getComponentContext(el));
-
-// function handleAngularInfo() {
-//     const { childNodes } = document.body;
-//     const els: HTMLElement[] = Array.from(childNodes)
-//         .filter(node => node instanceof HTMLElement) as any;
-//     const root = els.find((el) => el.getAttribute('ng-version'));
-//     console.log(root);
-//     if (root) {
-//         postMessage({ type: 'result', action: 'angularInfo', result: { isAngular: true, version: root.getAttribute('ng-version') } }, '*');
-//     } else {
-//         postMessage({ type: 'result', action: 'angularInfo', result: { isAngular: false } }, '*');
-//     }
-// }
