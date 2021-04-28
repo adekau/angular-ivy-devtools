@@ -3,9 +3,11 @@ import { Component } from '@angular/core';
 declare const chrome: any;
 @Component({
   selector: 'app-test',
-  template: '<div>a test component</div>'
+  template: '<div>a test component, <input [(ngModel)]="inp" /></div>'
 })
-export class TestComponent {}
+export class TestComponent {
+  public inp: string = '';
+}
 
 @Component({
   selector: 'app-root',

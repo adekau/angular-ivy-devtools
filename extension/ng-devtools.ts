@@ -1,4 +1,4 @@
-import { Ivy11Adapter, Ivy11LView, Ivy11TView } from "@ivy";
+import { Ivy11Adapter, Ivy11LView, Ivy11RenderFlags, Ivy11TView } from "@ivy";
 import { handleRequest, MessageSource, MessageType } from "@messaging";
 
 window.addEventListener('message', function ({ data, origin }: MessageEvent) {
@@ -27,7 +27,15 @@ function getComponents({ tv, lv }: { tv?: Ivy11TView, lv?: Ivy11LView }): any {
     m.forEach((cmp: Ivy11LView) => ret = m.concat(getComponents({ lv: cmp, tv: cmp[ivyAdapter.consts.lView.tView]})));
     return ret;
 }
-console.log(getComponents({ lv: rootLView, tv: rootTView }));
+const c = getComponents({ lv: rootLView, tv: rootTView });
+console.log(c);
+const origTemplate = c[1][1].template;
+c[1]![1]!.template = (rf: any, ctx: any) => {
+    origTemplate(rf, ctx);
+    console.log('running template!', rf, ctx);
+    console.log('isCreate', Boolean(rf & Ivy11RenderFlags.Create));
+    console.log('isUpdate', Boolean(rf & Ivy11RenderFlags.Update));
+};
 console.log('-------------------------------');
 
 console.log(ivyAdapter.getTemplate());
