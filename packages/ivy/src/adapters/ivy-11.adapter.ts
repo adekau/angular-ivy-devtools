@@ -1,12 +1,10 @@
 import { Ivy11Consts } from "../constants/ivy-11.const";
-import { NamedObject } from "../enums/named-objects.enum";
 import { findAngularRoot } from "../find-angular-root";
 import { Ivy11LView, Ivy11TView } from "../types";
 import { ComponentTree } from "../types/core/component-tree.type";
 import { IvyAdapter } from "../types/ivy-adapter";
 import { IvyConstants } from "../types/ivy-constants";
 import { isIvyRootContext } from "../util";
-import { namedArray } from "../util/named-object";
 
 export class Ivy11Adapter extends IvyAdapter {
     public version = 11;
@@ -61,12 +59,12 @@ export class Ivy11Adapter extends IvyAdapter {
         if (!comps) {
             return build;
         }
-        return namedArray(NamedObject.ComponentTree)(comps.reduce((agg, cur, i) => {
+        return comps.reduce((agg, cur, i) => {
             return {
                 ...agg,
                 [i]: { component: cur, children: this.getComponentTree(cur) }
             };
-        }, {} as ComponentTree));
+        }, {} as ComponentTree);
     }
 
     public getTemplate() {
