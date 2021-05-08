@@ -19,6 +19,7 @@ export type Ivy11TView = {
     template: Ivy11ComponentTemplate<{}> | null;
     firstCreatePass: boolean;
     firstUpdatePass: boolean;
+    firstChild: any;
     bindingStartIndex: number;
     expandoStartIndex: number;
     staticViewQueries: boolean;

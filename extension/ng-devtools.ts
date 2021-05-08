@@ -36,13 +36,14 @@ console.log('-------------------------------');
 //     console.log('isCreate', Boolean(rf & Ivy11RenderFlags.Create));
 //     console.log('isUpdate', Boolean(rf & Ivy11RenderFlags.Update));
 // };
-console.log(ivyAdapter.getViewChildren(rootLView));
-console.log(ivyAdapter.getComponentTree(ivyAdapter.getNgContext(ivyAdapter.angularRoot)));
+
+if (rootLView) {
+    ivyAdapter.traverseTree((i, t) => console.log(i, t))(rootLView, true)
+}
+
+// if (rootLView) {
+//     const a = [];
+//     a.push(ivyAdapter.getViewChildren(rootLView, (child) => ivyAdapter.getViewChildren(child, (c) => a.push(c))));
+//     console.log(a);
+// }
 console.log('-------------------------------');
-
-console.log(ivyAdapter.getTemplate());
-
-const el = document.getElementsByTagName('app-test').item(0) as HTMLElement ?? undefined;
-console.log(ivyAdapter.getNgContext(el));
-const lview = (ivyAdapter.getNgContext(el));
-console.log(ivyAdapter.getComponentTree(lview as any));

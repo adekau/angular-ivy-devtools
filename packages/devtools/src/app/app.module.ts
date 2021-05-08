@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent, TestComponent } from './app.component';
+import { AppComponent, TestComponent, TestComponent2 } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    TestComponent2
   ],
   imports: [
     BrowserModule,
