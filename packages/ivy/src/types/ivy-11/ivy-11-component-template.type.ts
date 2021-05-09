@@ -1,3 +1,5 @@
+import { Ivy11Consts } from "../../constants";
+
 export const enum Ivy11RenderFlags {
   /* Whether to run the creation block (e.g. create elements and directives) */
   Create = 0b01,
@@ -8,4 +10,5 @@ export const enum Ivy11RenderFlags {
 
 export type Ivy11ComponentTemplate<T> = {
     <U extends T>(rf: Ivy11RenderFlags, ctx: T | U): void;
+    [Ivy11Consts.patchedTemplateKey]?: boolean;
 };

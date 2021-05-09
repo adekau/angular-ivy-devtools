@@ -3,6 +3,7 @@ import { Ivy11Constants } from "../types/ivy-11/ivy-11-constants.type";
 export const Ivy11Consts: Ivy11Constants = {
     version: 11,
     contextKey: '__ngContext__',
+    patchedTemplateKey: '__patched_tpl__',
     lView: {
         host: 0,
         tView: 1,

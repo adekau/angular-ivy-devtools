@@ -38,7 +38,8 @@ console.log('-------------------------------');
 // };
 
 if (rootLView) {
-    ivyAdapter.traverseTree((i, t) => console.log(i, t))(rootLView, true)
+    const tree = ivyAdapter.makeTree(rootLView);
+    console.log(tree);
 }
 
 // if (rootLView) {

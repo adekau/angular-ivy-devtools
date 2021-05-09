@@ -23,6 +23,8 @@ export class TestComponent {
 })
 export class AppComponent {
   title = 'DevTools';
+  t: any = 'a';
+
   constructor() {
     const connection = chrome?.runtime?.connect();
   }

@@ -1,4 +1,10 @@
+<div>
   <h1>DevTools</h1>
+  <input [(ngModel)]="t" />
   <app-test></app-test>
-  <app-test *ngIf="true"></app-test>
+  <ng-container *ngIf="t; then first; else second"></ng-container>
+  <ng-template #first><p>first</p><app-test2></app-test2></ng-template>
+  <ng-template #second><p>second</p><app-test></app-test></ng-template>
+  <ng-template [ngIf]="t">Hello!</ng-template>
   <app-test2></app-test2>
+</div>

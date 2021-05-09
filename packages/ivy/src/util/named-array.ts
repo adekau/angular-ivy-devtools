@@ -7,5 +7,5 @@ export function namedArray(name: NamedArray) {
     const body = `(function anonymous() { return class ${name} extends Array{}; })`;
     const fn = eval(body) as Function;
     const c = fn();
-    return (...arr: any[]) => new c(...arr);
+    return (...arr: any[]) => (console.log(arr), new c(...arr));
 }

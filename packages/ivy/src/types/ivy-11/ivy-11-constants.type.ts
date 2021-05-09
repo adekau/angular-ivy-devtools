@@ -1,6 +1,7 @@
 export type Ivy11Constants = {
     version: 11,
     contextKey: '__ngContext__';
+    patchedTemplateKey: '__patched_tpl__';
     lView: {
         host: 0;
         tView: 1;
