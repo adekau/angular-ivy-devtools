@@ -14,4 +14,7 @@ export type MessageRequest = MessageRequestBase & (
     | {
         action: MessageAction.AngularInfo;
     }
+    | {
+        action: MessageAction.GetComponentTree;
+    }
 );

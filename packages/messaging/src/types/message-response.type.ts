@@ -1,3 +1,4 @@
+import { ComponentTree } from "@ivy";
 import { MessageAction } from "../enums/message-action.enum";
 import { MessageSource } from "../enums/message-source.enum";
 import { MessageType } from "../enums/message-type.enum";
@@ -12,7 +13,7 @@ type MessageResponseBase = {
 
 export type MessageResponse = MessageResponseBase & (
     | {
-        action: MessageAction.AngularInfo,
+        action: MessageAction.AngularInfo;
         result: (
             | {
                 isAngular: true;
@@ -21,6 +22,10 @@ export type MessageResponse = MessageResponseBase & (
             | {
                 isAngular: false;
             }
-        )
+        );
+    }
+    | {
+        action: MessageAction.GetComponentTree;
+        result: any
     }
 );

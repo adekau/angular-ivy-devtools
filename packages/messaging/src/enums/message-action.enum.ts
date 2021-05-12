@@ -1,3 +1,4 @@
 export const enum MessageAction {
-    AngularInfo = 'angularInfo'
+    AngularInfo = 'angularInfo',
+    GetComponentTree = 'getComponentTree'
 };

@@ -26,6 +26,10 @@ export class AppComponent {
   t: any = 'a';
 
   constructor() {
-    const connection = chrome?.runtime?.connect();
+    const connection = chrome?.runtime?.connect({ name: 'devtools' });
+    if (connection) {
+      connection.onMessage.addListener(console.log);
+      connection.postMessage({ type: 'hello ' });
+    }
   }
 }
