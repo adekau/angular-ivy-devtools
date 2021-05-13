@@ -1,4 +1,3 @@
-import { TemplateRef } from "@angular/core";
 import { Ivy11Consts } from "../constants/ivy-11.const";
 import { NamedArray } from "../enums/named-array.enum";
 import { findAngularRoot } from "../find-angular-root";
@@ -8,6 +7,7 @@ import { IvyAdapter } from "../types/ivy-adapter";
 import { IvyConstants } from "../types/ivy-constants";
 import { isIvyRootContext, isLContainer } from "../util";
 import { namedArray } from "../util/named-array";
+import { v4 } from 'uuid';
 
 export class Ivy11Adapter extends IvyAdapter {
     public version = 11;
@@ -108,6 +108,15 @@ export class Ivy11Adapter extends IvyAdapter {
         return initial;
     }
 
+    public trimTreeForTransport(tree: ReturnType<this['makeTree']>, parent?: any): any {
+        return {
+            id: tree.id,
+            children: tree.children.map(child => this.trimTreeForTransport(child, { id: tree.id })),
+            dynamic: tree.dynamic,
+            parent: parent
+        }
+    }
+
     public getTemplate() {
         const tView = this.getTView(this.angularRoot);
         const tpl = tView?.template;
@@ -116,6 +125,7 @@ export class Ivy11Adapter extends IvyAdapter {
 
     private newTreeItem(lView: Ivy11LView, parent: any) {
         return {
+            id: v4(),
             lView,
             parent,
             children: [] as any[],

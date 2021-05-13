@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 
 declare const chrome: any;
 @Component({
@@ -24,12 +24,16 @@ export class TestComponent {
 export class AppComponent {
   title = 'DevTools';
   t: any = 'a';
+  response: any;
 
-  constructor() {
+  constructor(private _ref: ChangeDetectorRef) {
     const connection = chrome?.runtime?.connect({ name: 'devtools' });
     if (connection) {
-      connection.onMessage.addListener(console.log);
-      connection.postMessage({ type: 'hello ' });
+      connection.onMessage.addListener((resp: any) => {
+        this.response = resp.result;
+        this._ref.detectChanges();
+        console.log(this.response);
+      });
     }
   }
 }

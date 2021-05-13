@@ -1,5 +1,6 @@
 <div>
   <h1>DevTools</h1>
+  <p>{{ response | json }}</p>
   <input [(ngModel)]="t" />
   <app-test></app-test>
   <ng-container *ngIf="t; then first; else second"></ng-container>

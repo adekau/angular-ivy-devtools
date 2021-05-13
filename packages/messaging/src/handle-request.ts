@@ -14,5 +14,5 @@ export function handleRequest(
     }
     console.debug('handleRequest', request);
     const handler = messageHandlers[action];
-    handler(request, sender, sendResponse);
+    handler(request as any, sender, sendResponse);
 }

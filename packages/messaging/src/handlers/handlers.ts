@@ -36,13 +36,15 @@ export const messageHandlers: MessageHandlers = {
         const adapter = new Ivy11Adapter();
         const lView = adapter.getNgContext(adapter.angularRoot);
         if (lView) {
+            const result = adapter.trimTreeForTransport(adapter.makeTree(lView));
+            console.log(JSON.stringify(result));
             sendResponse({
                 id: request.id,
                 source: request.source,
                 originalSource: request.originalSource,
                 type: MessageType.Response,
                 action: MessageAction.GetComponentTree,
-                result: adapter.makeTree(lView)
+                result
             });
         } else {
             sendResponse({
